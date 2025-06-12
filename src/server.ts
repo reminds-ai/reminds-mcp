@@ -5,7 +5,7 @@ import { createFleeting, getFleeting } from './fleeting.js';
 
 const server = new FastMCP({
   name: 'reminds-mcp',
-  version: '1.0.9',
+  version: '1.0.10',
 });
 
 server.addTool({
