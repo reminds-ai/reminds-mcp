@@ -4,7 +4,9 @@ A MCP server for [reminds](https://reminds-app.com)
 
 ## Supported Tools
 
-- create_html_fleeting_note: Create a fleeting note in HTML format
+- create_fleeting_note: Create a fleeting note in html format in reminds
+
+- get_fleeting_note: Get the content of a fleeting note in reminds
 
 ## How to Use in Cursor
 
