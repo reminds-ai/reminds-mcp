@@ -1,6 +1,6 @@
 {
   "name": "reminds-mcp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",
   "bin": {
@@ -32,6 +32,7 @@
   "type": "module",
   "description": "A MCP server for reminds",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "~1.11.5",
     "axios": "^1.9.0",
     "fastmcp": "^1.27.3",
     "is-html": "^3.1.0",
