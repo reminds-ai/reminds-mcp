@@ -1,6 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_ROOT = process.env.API_ROOT || "https://api.reminds-app.com/v1";
+import type { MemoSearchFilters } from './memo-search-params.js';
+
+const API_ROOT = process.env.API_ROOT || 'https://api.reminds-app.com/v1';
 const API_KEY = process.env.API_KEY;
 
 export interface MemoNote {
@@ -9,19 +11,31 @@ export interface MemoNote {
   title: string;
 }
 
+export type { MemoSearchFilters };
+
 export const searchNotes = async (
   query: string,
-  mode: "qa" | "retrieval" = "retrieval",
+  mode: 'qa' | 'retrieval' = 'retrieval',
   limit?: number,
+  filters?: MemoSearchFilters,
 ): Promise<number[]> => {
-  const response = await axios.post(
-    `${API_ROOT}/memo/search/hybrid`,
-    { limit, mode, query },
-    {
-      headers: { "Content-Type": "application/json" },
-      params: { api_key: API_KEY },
-    },
-  );
+  const body: {
+    filters?: MemoSearchFilters;
+    limit?: number;
+    mode: 'qa' | 'retrieval';
+    query: string;
+  } = { mode, query };
+  if (limit !== undefined) {
+    body.limit = limit;
+  }
+  if (filters !== undefined) {
+    body.filters = filters;
+  }
+
+  const response = await axios.post(`${API_ROOT}/memo/search/hybrid`, body, {
+    headers: { 'Content-Type': 'application/json' },
+    params: { api_key: API_KEY },
+  });
 
   if (response.status !== 200) {
     throw new Error(`Search failed: ${response.statusText}`);
@@ -32,7 +46,7 @@ export const searchNotes = async (
 
 export const getNotes = async (gids: number[]): Promise<MemoNote[]> => {
   const response = await axios.get(`${API_ROOT}/memo/batch`, {
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
     params: {
       api_key: API_KEY,
       gids: JSON.stringify(gids),

@@ -14,9 +14,9 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "fastmcp dev src/server.ts",
-    "lint": "prettier --check . && eslint . && tsc --noEmit",
+    "lint": "prettier --check . && eslint src eslint.config.ts && tsc --noEmit",
     "test": "vitest run",
-    "format": "prettier --write . && eslint --fix .",
+    "format": "prettier --write . && eslint --fix src eslint.config.ts",
     "prepublishOnly": "npm run build",
     "build": "tsc && chmod +x dist/server.js",
     "postbuild": "echo '#!/usr/bin/env node' | cat - dist/server.js > temp && mv temp dist/server.js && chmod +x dist/server.js"
@@ -34,6 +34,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.11.5",
     "axios": "^1.9.0",
+    "moment-timezone": "^0.5.45",
     "fastmcp": "^1.27.3",
     "is-html": "^3.1.0",
     "zod": "^3.24.4"
