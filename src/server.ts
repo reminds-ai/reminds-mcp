@@ -8,7 +8,7 @@ import { getNotes, searchNotes } from './memo.js';
 
 const server = new FastMCP({
   name: 'reminds-mcp',
-  version: '1.2.1',
+  version: '1.2.2',
 });
 
 server.addTool({
